@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link href="index.css" rel="stylesheet"/>
+  </head>
+  <body>
+    <div class="root">
+      <!-- icons used in the navigation bar of the phone -->
+      <svg style="display: none" viewBox="0 0 100 100" width="50" height="50">
+        <!-- perpendicular triangle for the signal icon -->
+        <symbol id="signal" viewBox="0 0 100 100">
+          <path d="M 10 80 h 80 v -60 z" fill="currentColor"></path>
+        </symbol>
+
+        <!-- triangle with a rounded side for the internet icon -->
+        <symbol id="wifi" viewBox="0 0 100 100">
+          <path
+            d="M 50 85 l -40 -60 a 80 80 0 0 1 80 0 z"
+            fill="currentColor"
+          ></path>
+        </symbol>
+
+        <!-- rectangle for the battery icon -->
+        <symbol id="battery" viewBox="0 0 100 100">
+          <rect x="10" y="28" width="80" height="44" fill="currentColor"></rect>
+        </symbol>
+      </svg>
+
+      <div class="phone">
+        <!-- in the nav show the current time before the three icons created earlier in the svg block -->
+        <nav class="phone--nav">
+          <span>9:42</span>
+          <!-- ! update through the script with the current number of hours:minutes -->
+          <svg width="20" height="20">
+            <use href="#signal"></use>
+          </svg>
+          <svg width="20" height="20">
+            <use href="#wifi"></use>
+          </svg>
+          <svg width="20" height="20">
+            <use href="#battery"></use>
+          </svg>
+        </nav>
+
+        <div class="phone--brief">
+          <h3>Android Club</h3>
+          <p>Mobile First Community</p>
+        </div>
+
+        <!-- describe the toggle with a checkbox and a span displaying the actual values -->
+        <form class="phone--toggle">
+          <input type="checkbox" name="checkbox" id="checkbox"/>
+          <label for="checkbox" id="mode-switch" >Light Dark</label>
+
+          <span for="name">Name</span>
+          <input type="text" name="name" />
+
+          <span for="text">Reg Num</span>
+          <input type="text" name="reg" id="reg" />
+          
+          <span for="department">Department</span>
+          <input type="text" name="department" id="department" />
+        </form>
+
+        <!-- describe the hypothetical pagination through three buttons -->
+        <div class="phone--pagination">
+          <button></button>
+          <button></button>
+          <button></button>
+        </div>
+
+        <!-- complete the UI with buttons allowing to continue in the hypothetical setup process -->
+        <div class="phone--footer">
+          <button>Skip</button>
+          <button>→</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="anime.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
