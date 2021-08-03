@@ -77,10 +77,10 @@ var fields = [
   "year",
   "branch",
   "department",
-  "texperience",
+  "techExperience",
   "linkedin",
   "github",
-  "why",
+  "whyAC",
   "submit"
 ];
 var idx = 0;
