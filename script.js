@@ -90,14 +90,11 @@ const btn_next = () => {
   // TODO if submit handle
   if (idx == fields.length - 1) return;
 
-  document.querySelector(`span[name='${fields[idx]}']`).style.display = "none";
-  document.querySelector(`input[name='${fields[idx]}']`).style.display = "none";
-
+  let visible = document.querySelectorAll(`.ac--form>*[name='${fields[idx]}']`)
+  visible.forEach(x=>x.style.display = "none");
   idx++;
-
-  if(idx!=fields.length -1) document.querySelector(`span[name='${fields[idx]}']`).style.display = "block";
-  document.querySelector(`input[name='${fields[idx]}']`).style.display =
-    "block";
+  let hidden = document.querySelectorAll(`.ac--form>*[name='${fields[idx]}']`)
+  hidden.forEach(x=>x.style.display = "block");
 };
 
 const btn_prev = () => {
@@ -106,13 +103,26 @@ const btn_prev = () => {
   // TODO if submit handle
 
   if(idx == 0) return;
-
-  if(idx!=fields.length-1) document.querySelector(`span[name='${fields[idx]}']`).style.display = "none";
-  document.querySelector(`input[name='${fields[idx]}']`).style.display = "none";
-
+  let visible = document.querySelectorAll(`.ac--form>*[name='${fields[idx]}']`)
+  visible.forEach(x=>x.style.display = "none");
   idx--;
-
-  document.querySelector(`span[name='${fields[idx]}']`).style.display = "block";
-  document.querySelector(`input[name='${fields[idx]}']`).style.display =
-    "block";
+  let hidden = document.querySelectorAll(`.ac--form>*[name='${fields[idx]}']`)
+  hidden.forEach(x=>x.style.display = "block");
 };
+
+//https://script.google.com/macros/s/AKfycby0f3EOFdm2ZNoGZXcvIN18Dpni9n7qtePMDpqaexDRtwlRHExjoYOAqqZhGo8UPWY/exec
+
+const onSubmit = async () => {
+  let dataEle = document.querySelectorAll(`.ac--form>input,textarea,select`);
+  let data = {}
+  dataEle.forEach(x=>{
+    data[x.name] = x.value;
+  });
+
+  let d = new URLSearchParams(data).toString();
+
+  let res = await fetch('https://script.google.com/macros/s/AKfycby0f3EOFdm2ZNoGZXcvIN18Dpni9n7qtePMDpqaexDRtwlRHExjoYOAqqZhGo8UPWY/exec?'+d);
+
+  res = res.json();
+  console.log(res);
+}

@@ -48,7 +48,7 @@ div.phone {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 80vh;
+  height: 576px;
 }
 /* have the navigation stretch horizontally */
 .phone--nav {
@@ -101,6 +101,8 @@ div.phone {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
+  height: 300px;
 }
 
 .ac--form > * {
@@ -112,19 +114,49 @@ div.phone {
 }
 
 .ac--form > span {
-  margin-bottom: 20px;
   max-width: 80%;
+  margin-bottom: 5px;
   text-align: center;
 }
 
-.ac--form > input {
+.ac--form .required {
+  color: red;
+  font-size: 9px;
+}
+
+.ac--form > input,select,textarea {
+  margin-top: 20px;
   padding: 10px;
   border-radius: 8px;
   outline: none;
   border: none;
   border-bottom: solid 2px #000;
+  background-color: #fff;
 }
 
+.ac--form > textarea {
+  height: 80px;
+} 
+
+.ac--form > button[name='submit'] {
+  position: relative;
+  padding: 15px 30px;
+  outline: none;
+  border: 2px solid #000;
+  border-radius: 8px;
+  color: green;
+  background: var(--background);
+  box-shadow: 0 0 15px -5px hsla(0, 0%, 0%, 0.4),
+  0 1px 5px -4px hsla(0, 0%, 0%, 1);
+}
+
+.ac--form > button[name='submit']:hover::after {
+  content: "Thank You!";
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  margin-left: -31%;
+}
 
 /* visually conceal the checkbox */
 .phone--toggle input[type="checkbox"] {
@@ -207,12 +239,14 @@ div.phone {
 .phone--footer {
   padding: 1.5rem;
   display: flex;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
-  align-self: stretch;
+  justify-self: flex-end;
+  cursor: pointer;
 }
 
-.phone--footer button {
+.phone--footer div {
   font-family: inherit;
   color: inherit;
   background: none;
