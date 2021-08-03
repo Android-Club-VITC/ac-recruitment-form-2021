@@ -55,16 +55,44 @@
         <form class="phone--toggle">
           <input type="checkbox" name="checkbox" id="checkbox"/>
           <label for="checkbox" id="mode-switch" >Light Dark</label>
-
-          <span for="name">Name</span>
-          <input type="text" name="name" />
-
-          <span for="text">Reg Num</span>
-          <input type="text" name="reg" id="reg" />
-          
-          <span for="department">Department</span>
-          <input type="text" name="department" id="department" />
         </form>
+        
+        <div class="ac--form">
+          <span for="name" name="email">Email</span>
+          <input type="text" name="email" placeholder="Email"/>
+
+          <span for="name" name="name">Name</span>
+          <input type="text" name="name" placeholder="First and Last name" />
+
+          <span for="name" name="phone">Phone No.</span>
+          <input type="text" name="phone" placeholder="Phone"/>
+
+          <span for="reg" name="reg">Registration No.</span>
+          <input type="text" name="reg" placeholder="Registration No."/>
+          
+          <span for="year" name="year">Year</span>
+          <input type="text" name="year" placeholder="year"/>
+        
+          <span for="branch" name="branch">Banch</span>
+          <input type="text" name="branch" placeholder="Branch"/>
+
+          <span for="department" name="department">Which Department are you intrested in?</span>
+          <input type="text" name="department" placeholder="Department"/>
+
+          <span for="texperience" name="texperience">Technical Experience</span>
+          <input type="text" name="texperience" placeholder="Experience"/>
+
+          <span for="department" name="linkedin">Linkedin</span>
+          <input type="text" name="linkedin" placeholder="Linkedin"/>
+
+          <span for="github" name="github">Github</span>
+          <input type="text" name="github" placeholder="Github"/>
+
+          <span for="why" name="why">Why do you want to join Android Club?</span>
+          <input type="text" name="why" placeholder="Plans"/>
+          
+          <input type="button" name="submit" value="Submit"/>
+        </div>
 
         <!-- describe the hypothetical pagination through three buttons -->
         <div class="phone--pagination">
@@ -75,8 +103,8 @@
 
         <!-- complete the UI with buttons allowing to continue in the hypothetical setup process -->
         <div class="phone--footer">
-          <button>Skip</button>
-          <button>→</button>
+          <button class="btn--prev" onclick="btn_prev()">Previous</button>
+          <button class="btn--next" onclick="btn_next()">Next</button>
         </div>
       </div>
     </div>

@@ -47,14 +47,14 @@ function handleChange(e) {
   // ! applying a transition on the circle works on chrome, but not on firefox, nor edge
   // anime.js is used instead
   // mask.style.transition = 'all 0.5s ease-out';
-//   anime({
-//     targets: mask,
-//     easing: "easeOutCubic",
-//     r: theme === "light" ? 0 : 50,
-//     cx: theme === "light" ? 100 : 70,
-//     cy: theme === "light" ? 0 : 30,
-//     duration: 500,
-//   });
+  //   anime({
+  //     targets: mask,
+  //     easing: "easeOutCubic",
+  //     r: theme === "light" ? 0 : 50,
+  //     cx: theme === "light" ? 100 : 70,
+  //     cy: theme === "light" ? 0 : 30,
+  //     duration: 500,
+  //   });
 }
 
 form.addEventListener("change", handleChange);
@@ -68,3 +68,51 @@ const zeroPadded = (num) => (num >= 10 ? num.toString() : `0${num}`);
 
 const span = document.querySelector("nav span");
 span.textContent = `${hours}:${zeroPadded(minutes)}`;
+
+var fields = [
+  "email",
+  "name",
+  "phone",
+  "reg",
+  "year",
+  "branch",
+  "department",
+  "texperience",
+  "linkedin",
+  "github",
+  "why",
+  "submit"
+];
+var idx = 0;
+const btn_next = () => {
+  // TODO validate fields
+
+  // TODO if submit handle
+  if (idx == fields.length - 1) return;
+
+  document.querySelector(`span[name='${fields[idx]}']`).style.display = "none";
+  document.querySelector(`input[name='${fields[idx]}']`).style.display = "none";
+
+  idx++;
+
+  if(idx!=fields.length -1) document.querySelector(`span[name='${fields[idx]}']`).style.display = "block";
+  document.querySelector(`input[name='${fields[idx]}']`).style.display =
+    "block";
+};
+
+const btn_prev = () => {
+  // TODO validate fields
+
+  // TODO if submit handle
+
+  if(idx == 0) return;
+
+  if(idx!=fields.length-1) document.querySelector(`span[name='${fields[idx]}']`).style.display = "none";
+  document.querySelector(`input[name='${fields[idx]}']`).style.display = "none";
+
+  idx--;
+
+  document.querySelector(`span[name='${fields[idx]}']`).style.display = "block";
+  document.querySelector(`input[name='${fields[idx]}']`).style.display =
+    "block";
+};
