@@ -86,15 +86,27 @@ var fields = [
 var idx = 0;
 const btn_next = () => {
   // TODO validate fields
+  let valid = document.querySelectorAll(`.ac--form>*[name='${fields[idx]}']`)
+  // let valid1 = document.querySelectorAll(`.ac--form>input[name='${fields[idx]}']`,`.ac--form>select[name='${fields[idx]}']`)
+  console.log(valid);
+  if(valid[2].value == "" && (valid[2].name!="github" && valid[2].name!="linkedin"))
+  {
+    console.log("empty")
+    let x = document.querySelectorAll(`.phone--footer>*[name='next']`)
+    x[0].setAttribute("disabled","true");
+    console.log(x);
+  }
+  else{
+    // TODO if submit handle
+    if (idx == fields.length - 1) return;
 
-  // TODO if submit handle
-  if (idx == fields.length - 1) return;
-
-  let visible = document.querySelectorAll(`.ac--form>*[name='${fields[idx]}']`)
-  visible.forEach(x=>x.style.display = "none");
-  idx++;
-  let hidden = document.querySelectorAll(`.ac--form>*[name='${fields[idx]}']`)
-  hidden.forEach(x=>x.style.display = "block");
+    let visible = document.querySelectorAll(`.ac--form>*[name='${fields[idx]}']`)
+    visible.forEach(x=>x.style.display = "none");
+    idx++;
+    let hidden = document.querySelectorAll(`.ac--form>*[name='${fields[idx]}']`)
+    hidden.forEach(x=>x.style.display = "block");
+    }
+  
 };
 
 const btn_prev = () => {
@@ -114,6 +126,10 @@ const btn_prev = () => {
 
 const onSubmit = async () => {
   let dataEle = document.querySelectorAll(`.ac--form>input,textarea,select`);
+  let submit = document.querySelectorAll(`.ac--form>input[name="submit"]`);
+  submit[0].setAttribute("value","Thank You!");
+  submit[0].setAttribute("disabled","true");
+  console.log(submit)
   let data = {}
   dataEle.forEach(x=>{
     data[x.name] = x.value;
@@ -121,8 +137,11 @@ const onSubmit = async () => {
 
   let d = new URLSearchParams(data).toString();
 
-  let res = await fetch('https://script.google.com/macros/s/AKfycby0f3EOFdm2ZNoGZXcvIN18Dpni9n7qtePMDpqaexDRtwlRHExjoYOAqqZhGo8UPWY/exec?'+d);
+  await fetch('https://script.google.com/macros/s/AKfycby0f3EOFdm2ZNoGZXcvIN18Dpni9n7qtePMDpqaexDRtwlRHExjoYOAqqZhGo8UPWY/exec?'+d)
+  .then((res) => {
+    res.json();
+    console.log(res);
+  }).catch(e => console.log(e));
 
-  res = res.json();
-  console.log(res);
+  
 }

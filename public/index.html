@@ -60,11 +60,11 @@
         <div class="ac--form">
           <span for="name" name="email">Email</span>
           <span for="name" name="email" class="required">*required</span>
-          <input type="text" name="email" placeholder="Email"/>
+          <input type="text" id="email" name="email" placeholder="Email" />
 
           <span for="name" name="name">Name</span>
           <span for="name" name="name" class="required">*required</span>
-          <input type="text" name="name" placeholder="First and Last name" />
+          <input type="text" name="name" placeholder="Full Name" />
 
           <span for="name" name="phone">Phone No.</span>
           <span for="name" name="phone" class="required">*required</span>
@@ -76,13 +76,13 @@
           
           <span for="year" name="year">Year</span>
           <span for="year" name="year" class="required">*required</span>
-          <input type="text" name="year" placeholder="year"/>
+          <input type="text" name="year" placeholder="Year"/>
         
-          <span for="branch" name="branch">Banch</span>
+          <span for="branch" name="branch">Branch</span>
           <span for="branch" name="branch" class="required">*required</span>
           <input type="text" name="branch" placeholder="Branch"/>
 
-          <span for="department" name="department">Which Department are you intrested in?</span>
+          <span for="department" name="department">Department of Interest?</span>
           <span for="department" name="department" class="required">*required</span>
           <select name="department" id="department" value="Technical">
             <option value="technical">Technical</option>
@@ -92,6 +92,7 @@
           </select>
 
           <span for="texperience" name="techExperience">Technical Experience</span>
+          <span for="department" name="techExperience" class="required"></span>
           <select name="techExperience" id="texperience" value="react-naitve">
             <option value="react-naitve">React Naitve</option>
             <option value="flutter">Flutter</option>
@@ -100,16 +101,19 @@
           </select>
 
           <span for="department" name="linkedin">Linkedin</span>
+          <span for="department" name="linkedin" class="required"></span>
           <input type="text" name="linkedin" placeholder="Linkedin"/>
 
           <span for="github" name="github">Github</span>
+          <span for="department" name="github" class="required"></span>
           <input type="text" name="github" placeholder="Github"/>
 
           <span for="why" name="whyAC">Why do you want to join Android Club?</span>
           <span for="why" name="whyAC" class="required">*required</span>
-          <textarea type="text" name="whyAC" placeholder="Plans"></textarea>
+          <textarea type="text" name="whyAC" placeholder="Explain in brief"></textarea>
           
-          <button type="button" name="submit" onclick="onSubmit()">Submit</button>
+          <!-- <button type="button" name="submit" onclick="onSubmit()">Submit</button> -->
+          <input type="button" name="submit" onclick="onSubmit()" value="Submit" />
         </div>
 
         <!-- describe the hypothetical pagination through three buttons -->
@@ -121,8 +125,8 @@
 
         <!-- complete the UI with buttons allowing to continue in the hypothetical setup process -->
         <div class="phone--footer">
-          <div class="btn--prev" onclick="btn_prev()">Previous</div>
-          <div class="btn--next" onclick="btn_next()">Next</div>
+          <div class="btn--prev" name="prev" onclick="btn_prev()">Previous</div>
+          <div class="btn--next" name="next" onclick="btn_next()">Next</div>
         </div>
       </div>
     </div>
