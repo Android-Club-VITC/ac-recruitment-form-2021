@@ -88,13 +88,12 @@ const btn_next = () => {
   // TODO validate fields
   let valid = document.querySelectorAll(`.ac--form>*[name='${fields[idx]}']`)
   // let valid1 = document.querySelectorAll(`.ac--form>input[name='${fields[idx]}']`,`.ac--form>select[name='${fields[idx]}']`)
-  console.log(valid);
+  // console.log(valid);
   if(valid[2].value == "" && (valid[2].name!="github" && valid[2].name!="linkedin"))
   {
-    console.log("empty")
     let x = document.querySelectorAll(`.phone--footer>*[name='next']`)
     x[0].setAttribute("disabled","true");
-    console.log(x);
+    // console.log(x);
   }
   else{
     // TODO if submit handle
