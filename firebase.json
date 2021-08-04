@@ -1,0 +1,11 @@
+{
+  "hosting": {
+    "site": "recruitment-form-2021",
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
