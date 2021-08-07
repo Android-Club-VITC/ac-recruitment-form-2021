@@ -104,6 +104,11 @@ const btn_next = () => {
     idx++;
     let hidden = document.querySelectorAll(`.ac--form>*[name='${fields[idx]}']`)
     hidden.forEach(x=>x.style.display = "block");
+
+    if(fields[idx] === "submit"){
+      document.querySelector('.ac--form .ac--loader').style.display = 'block';
+      document.querySelector('.ac--form .ac--loader').style.visibility = 'hidden';
+    } 
     }
   
 };
@@ -126,7 +131,8 @@ const btn_prev = () => {
 const onSubmit = async () => {
   let dataEle = document.querySelectorAll(`.ac--form>input,textarea,select`);
   let submit = document.querySelectorAll(`.ac--form>input[name="submit"]`);
-  submit[0].setAttribute("value","Thank You!");
+  document.querySelector('.ac--form .ac--loader').style.visibility = 'visible';
+  submit[0].setAttribute("value","Submitting...");
   submit[0].setAttribute("disabled","true");
   console.log(submit)
   let data = {}
@@ -137,10 +143,29 @@ const onSubmit = async () => {
   let d = new URLSearchParams(data).toString();
 
   await fetch('https://script.google.com/macros/s/AKfycby0f3EOFdm2ZNoGZXcvIN18Dpni9n7qtePMDpqaexDRtwlRHExjoYOAqqZhGo8UPWY/exec?'+d)
-  .then((res) => {
-    res.json();
-    console.log(res);
-  }).catch(e => console.log(e));
-
-  
+  .then((res) =>res.json())
+  .then((res)=>{
+    document.querySelector('.ac--form .ac--loader').style.visibility = 'hidden';
+    if(res.status == "success") {
+      submit[0].setAttribute("value","Done");
+      setTimeout(()=>{
+        onSuccess();
+      },1000)
+    }
+    else throw new Error();
+  }).catch(e =>{
+    document.querySelector('.ac--form .ac--loader').style.visibility = 'hidden';
+    submit[0].setAttribute("value","Error");
+      setTimeout(()=>{
+        submit[0].setAttribute("value","Try Again Later");
+      },1000)
+  });
 }
+
+const onSuccess = () => {
+  document.querySelector(".ac--form>*[name='submit']").style.display = 'none';
+  document.querySelector(".phone--footer").style.visibility = 'hidden';
+  let note = document.querySelectorAll('.ac--form-success')
+  note.forEach(x=>x.style.display = 'block');
+}
+
