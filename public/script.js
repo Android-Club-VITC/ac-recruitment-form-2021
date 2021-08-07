@@ -134,7 +134,6 @@ const onSubmit = async () => {
   document.querySelector('.ac--form .ac--loader').style.visibility = 'visible';
   submit[0].setAttribute("value","Submitting...");
   submit[0].setAttribute("disabled","true");
-  console.log(submit)
   let data = {}
   dataEle.forEach(x=>{
     data[x.name] = x.value;

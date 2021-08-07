@@ -80,7 +80,11 @@
           
           <span for="year" name="year">Year</span>
           <span for="year" name="year" class="required">*required</span>
-          <input type="text" name="year" placeholder="Year"/>
+          <select name="year" id="year" value="first">
+            <option value="first">1st</option>
+            <option value="second">2nd</option>
+            <option value="third">3rd</option>
+          </select>
         
           <span for="branch" name="branch">Branch</span>
           <span for="branch" name="branch" class="required">*required</span>
@@ -97,19 +101,19 @@
 
           <span for="texperience" name="techExperience">Technical Experience</span>
           <span for="department" name="techExperience" class="required"></span>
-          <select name="techExperience" id="texperience" value="react-naitve">
-            <option value="react-naitve">React Naitve</option>
+          <select name="techExperience" id="texperience" value="react-native">
+            <option value="react-native">React Native</option>
             <option value="flutter">Flutter</option>
             <option value="kotlin">Kotlin</option>
             <option value="other">Other</option>
           </select>
 
-          <span for="department" name="linkedin">Linkedin</span>
-          <span for="department" name="linkedin" class="required"></span>
+          <span for="linkedin" name="linkedin">Linkedin</span>
+          <span for="linkedin" name="linkedin" class="required"></span>
           <input type="text" name="linkedin" placeholder="Linkedin"/>
 
           <span for="github" name="github">Github</span>
-          <span for="department" name="github" class="required"></span>
+          <span for="github" name="github" class="required"></span>
           <input type="text" name="github" placeholder="Github"/>
 
           <span for="why" name="whyAC">Why do you want to join Android Club?</span>
