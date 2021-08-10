@@ -81,36 +81,94 @@ var fields = [
   "linkedin",
   "github",
   "whyAC",
-  "submit"
+  "submit",
 ];
 var idx = 0;
-const btn_next = () => {
-  // TODO validate fields
-  let valid = document.querySelectorAll(`.ac--form>*[name='${fields[idx]}']`)
-  // let valid1 = document.querySelectorAll(`.ac--form>input[name='${fields[idx]}']`,`.ac--form>select[name='${fields[idx]}']`)
-  // console.log(valid);
-  if(valid[2].value == "" && (valid[2].name!="github" && valid[2].name!="linkedin"))
-  {
-    let x = document.querySelectorAll(`.phone--footer>*[name='next']`)
-    x[0].setAttribute("disabled","true");
+
+function validate(valid) {
+  if (valid[2].name == "email") {
+    var validRegex1 =
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    console.log(validRegex1.test(valid[2].value));
+    if (!validRegex1.test(valid[2].value)) {
+      console.log("not valid");
+      document.getElementById("reqe").innerHTML = "Invalid Email ID!"
+      return false;
+    }else{
+      return true;
+    }
+  }
+  if(valid[2].name == "name"){
+    var validRegex2 = /^[a-z ,.'-]+$/i;
+    if (!validRegex2.test(valid[2].value)) {
+      console.log("not valid");
+      // let x = document.querySelectorAll(`.phone--footer>*[name='next']`)
+      // x[0].setAttribute("disabled","true");
+      // let y = document.querySelectorAll(`.ac--form>*[class='required']`);
+      document.getElementById("reqn").innerHTML = "Invalid Name!"
+      // y[0].setAttribute("innerHTML", "*Invalid Email ID");
+      return false;
+    }else{
+      return true;
+    }
+  }
+  if(valid[2].name == "phone"){
+    var validRegex3 = /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/;
+    if (!validRegex3.test(valid[2].value)) {
+      console.log("not valid");
+      document.getElementById("reqp").innerHTML = "Invalid Phone number!"
+      return false;
+    }else{
+      return true;
+    }
+  }
+  else if (
+    valid[2].value == "" &&
+    valid[2].name != "github" &&
+    valid[2].name != "linkedin"
+  ) {
+    return false;
+    // let x = document.querySelectorAll(`.phone--footer>*[name='next']`)
+    // x[0].setAttribute("disabled","true");
     // console.log(x);
   }
   else{
+    return true;
+  }
+}
+
+const btn_next = () => {
+  // TODO validate fields
+  let inputfield = document.querySelectorAll(`.ac--form>*[name='${fields[idx]}']`);
+  // let valid1 = document.querySelectorAll(`.ac--form>input[name='${fields[idx]}']`,`.ac--form>select[name='${fields[idx]}']`)
+  //console.log(valid);
+
+  let valid = validate(inputfield);
+
+  if (!valid) {
+    console.log(valid);
+    let x = document.querySelectorAll(`.phone--footer>*[name='next']`);
+    x[0].setAttribute("disabled", "true");
+  } else {
     // TODO if submit handle
     if (idx == fields.length - 1) return;
 
-    let visible = document.querySelectorAll(`.ac--form>*[name='${fields[idx]}']`)
-    visible.forEach(x=>x.style.display = "none");
+    let visible = document.querySelectorAll(
+      `.ac--form>*[name='${fields[idx]}']`
+    );
+    visible.forEach((x) => (x.style.display = "none"));
     idx++;
-    let hidden = document.querySelectorAll(`.ac--form>*[name='${fields[idx]}']`)
-    hidden.forEach(x=>x.style.display = "block");
+    let hidden = document.querySelectorAll(
+      `.ac--form>*[name='${fields[idx]}']`
+    );
+    hidden.forEach((x) => (x.style.display = "block"));
 
-    if(fields[idx] === "submit"){
-      document.querySelector('.ac--form .ac--loader').style.display = 'block';
-      document.querySelector('.ac--form .ac--loader').style.visibility = 'hidden';
-    } 
+    if (fields[idx] === "submit") {
+      document.querySelector(".ac--form .ac--loader").style.display = "block";
+      document.querySelector(".ac--form .ac--loader").style.visibility =
+        "hidden";
     }
-  
+  }
 };
 
 const btn_prev = () => {
@@ -118,12 +176,12 @@ const btn_prev = () => {
 
   // TODO if submit handle
 
-  if(idx == 0) return;
-  let visible = document.querySelectorAll(`.ac--form>*[name='${fields[idx]}']`)
-  visible.forEach(x=>x.style.display = "none");
+  if (idx == 0) return;
+  let visible = document.querySelectorAll(`.ac--form>*[name='${fields[idx]}']`);
+  visible.forEach((x) => (x.style.display = "none"));
   idx--;
-  let hidden = document.querySelectorAll(`.ac--form>*[name='${fields[idx]}']`)
-  hidden.forEach(x=>x.style.display = "block");
+  let hidden = document.querySelectorAll(`.ac--form>*[name='${fields[idx]}']`);
+  hidden.forEach((x) => (x.style.display = "block"));
 };
 
 //https://script.google.com/macros/s/AKfycby0f3EOFdm2ZNoGZXcvIN18Dpni9n7qtePMDpqaexDRtwlRHExjoYOAqqZhGo8UPWY/exec
@@ -131,40 +189,44 @@ const btn_prev = () => {
 const onSubmit = async () => {
   let dataEle = document.querySelectorAll(`.ac--form>input,textarea,select`);
   let submit = document.querySelectorAll(`.ac--form>input[name="submit"]`);
-  document.querySelector('.ac--form .ac--loader').style.visibility = 'visible';
-  submit[0].setAttribute("value","Submitting...");
-  submit[0].setAttribute("disabled","true");
-  let data = {}
-  dataEle.forEach(x=>{
+  document.querySelector(".ac--form .ac--loader").style.visibility = "visible";
+  submit[0].setAttribute("value", "Submitting...");
+  submit[0].setAttribute("disabled", "true");
+  let data = {};
+  dataEle.forEach((x) => {
     data[x.name] = x.value;
   });
 
   let d = new URLSearchParams(data).toString();
 
-  await fetch('https://script.google.com/macros/s/AKfycby0f3EOFdm2ZNoGZXcvIN18Dpni9n7qtePMDpqaexDRtwlRHExjoYOAqqZhGo8UPWY/exec?'+d)
-  .then((res) =>res.json())
-  .then((res)=>{
-    document.querySelector('.ac--form .ac--loader').style.visibility = 'hidden';
-    if(res.status == "success") {
-      submit[0].setAttribute("value","Done");
-      setTimeout(()=>{
-        onSuccess();
-      },1000)
-    }
-    else throw new Error();
-  }).catch(e =>{
-    document.querySelector('.ac--form .ac--loader').style.visibility = 'hidden';
-    submit[0].setAttribute("value","Error");
-      setTimeout(()=>{
-        submit[0].setAttribute("value","Try Again Later");
-      },1000)
-  });
-}
+  await fetch(
+    "https://script.google.com/macros/s/AKfycby0f3EOFdm2ZNoGZXcvIN18Dpni9n7qtePMDpqaexDRtwlRHExjoYOAqqZhGo8UPWY/exec?" +
+      d
+  )
+    .then((res) => res.json())
+    .then((res) => {
+      document.querySelector(".ac--form .ac--loader").style.visibility =
+        "hidden";
+      if (res.status == "success") {
+        submit[0].setAttribute("value", "Done");
+        setTimeout(() => {
+          onSuccess();
+        }, 1000);
+      } else throw new Error();
+    })
+    .catch((e) => {
+      document.querySelector(".ac--form .ac--loader").style.visibility =
+        "hidden";
+      submit[0].setAttribute("value", "Error");
+      setTimeout(() => {
+        submit[0].setAttribute("value", "Try Again Later");
+      }, 1000);
+    });
+};
 
 const onSuccess = () => {
-  document.querySelector(".ac--form>*[name='submit']").style.display = 'none';
-  document.querySelector(".phone--footer").style.visibility = 'hidden';
-  let note = document.querySelectorAll('.ac--form-success')
-  note.forEach(x=>x.style.display = 'block');
-}
-
+  document.querySelector(".ac--form>*[name='submit']").style.display = "none";
+  document.querySelector(".phone--footer").style.visibility = "hidden";
+  let note = document.querySelectorAll(".ac--form-success");
+  note.forEach((x) => (x.style.display = "block"));
+};
