@@ -89,9 +89,9 @@ function validate(valid) {
   if (valid[2].name == "email") {
     var validRegex1 =
       /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    console.log(validRegex1.test(valid[2].value));
+    //console.log(validRegex1.test(valid[2].value));
     if (!validRegex1.test(valid[2].value)) {
-      console.log("not valid");
+      //console.log("not valid");
       document.getElementById("reqe").innerHTML = "Invalid Email ID!"
       return false;
     }else{
@@ -101,12 +101,8 @@ function validate(valid) {
   if(valid[2].name == "name"){
     var validRegex2 = /^[a-z ,.'-]+$/i;
     if (!validRegex2.test(valid[2].value)) {
-      console.log("not valid");
-      // let x = document.querySelectorAll(`.phone--footer>*[name='next']`)
-      // x[0].setAttribute("disabled","true");
-      // let y = document.querySelectorAll(`.ac--form>*[class='required']`);
+      //console.log("not valid");
       document.getElementById("reqn").innerHTML = "Invalid Name!"
-      // y[0].setAttribute("innerHTML", "*Invalid Email ID");
       return false;
     }else{
       return true;
@@ -115,7 +111,7 @@ function validate(valid) {
   if(valid[2].name == "phone"){
     var validRegex3 = /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/;
     if (!validRegex3.test(valid[2].value)) {
-      console.log("not valid");
+      //console.log("not valid");
       document.getElementById("reqp").innerHTML = "Invalid Phone number!"
       return false;
     }else{
@@ -128,9 +124,6 @@ function validate(valid) {
     valid[2].name != "linkedin"
   ) {
     return false;
-    // let x = document.querySelectorAll(`.phone--footer>*[name='next']`)
-    // x[0].setAttribute("disabled","true");
-    // console.log(x);
   }
   else{
     return true;
